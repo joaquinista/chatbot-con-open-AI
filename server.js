@@ -1,14 +1,18 @@
-const http = require('http');
+const express = require('express');
+const app = express();
+const PORT = 3000;
 
-const hostname = '0.0.0.0';  // Escucha en todas las IPs del servidor
-const port = 3000;
-
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World\n');
+// Ruta principal
+app.get('/', (req, res) => {
+  res.send('Hello World!');
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+// Ruta de chatbot (lógica del chatbot)
+app.get('/chatbot', (req, res) => {
+  res.send('Aquí irá la respuesta del chatbot.');
+});
+
+// Iniciar el servidor
+app.listen(PORT, () => {
+  console.log(`Servidor escuchando en http://localhost:${PORT}`);
 });
